@@ -31,11 +31,11 @@ app.use(
 );
 
 const isSignedIn = require('./middleware/is-signed-in.js');
-const passUserToView = required('./middleware/pass-user-to-view.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
 
 app.use(passUserToView);
-app.use('/auth, authController')
 app.use('/auth', authController);
+app.use(isSignedIn);
 app.use('/users/:userId/foods', foodsController);
 
 app.get('/', (req, res) => {
