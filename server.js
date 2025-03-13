@@ -35,14 +35,16 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 
 app.use(passUserToView);
 app.use('/auth', authController);
-app.use(isSignedIn);
-app.use('/users/:userId/foods', foodsController);
+
 
 app.get('/', (req, res) => {
   res.render('index.ejs', {
     user: req.session.user,
   });
 });
+
+app.use(isSignedIn);
+app.use('/users/:userId/foods', foodsController);
 
 app.get('/vip-lounge', (req, res) => {
   if (req.session.user) {
