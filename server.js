@@ -30,6 +30,14 @@ app.use(
   })
 );
 
+const isSignedIn = require('./middleware/is-signed-in.js');
+const passUserToView = required('./middleware/pass-user-to-view.js');
+
+app.use(passUserToView);
+app.use('/auth, authController')
+app.use('/auth', authController);
+app.use('/users/:userId/foods', foodsController);
+
 app.get('/', (req, res) => {
   res.render('index.ejs', {
     user: req.session.user,
@@ -44,8 +52,7 @@ app.get('/vip-lounge', (req, res) => {
   }
 });
 
-app.use('/auth', authController);
-app.use('/users/:userId/foods', foodsController);
+
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
