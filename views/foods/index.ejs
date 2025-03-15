@@ -15,16 +15,15 @@
 
             <% if (pantry.length> 0) { %>
                 <% pantry.forEach((item)=> { %>
-                    <li><a href="/users/<%= user._id %>/foods/<%= item._id %>">
                             <%= item.name %>
                                 <form action="/users/<%= user._id %>/foods/<%= item._id %>?_method=DELETE"
-                                    method="POST">
-                                    <button type="submit">Delete</button>
+                                    method="POST"><button type="submit">Delete</button>
 
                                 </form>
-                        </a>
-
+                            </a>
+                           <a href="/users/<%= user._id %>/foods/<%= item._id %>/edit">Edit</a>
                     </li>
+                
                     <% }) %>
                         <% } else { %>
                             There are no items in this pantry.
