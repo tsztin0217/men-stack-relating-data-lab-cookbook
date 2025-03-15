@@ -9,6 +9,7 @@ const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
 const foodsController = require('./controllers/foods.js');
+const usersController = require('./controllers/users.js')
 
 
 const port = process.env.PORT ? process.env.PORT : '3000';
@@ -45,6 +46,9 @@ app.get('/', (req, res) => {
 
 app.use(isSignedIn);
 app.use('/users/:userId/foods', foodsController);
+
+app.use('/users', usersController);
+
 
 app.get('/vip-lounge', (req, res) => {
   if (req.session.user) {
